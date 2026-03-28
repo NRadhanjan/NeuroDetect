@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuroDetect — Autism Early Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="logo" href="#">Neuro<span>Detect</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#screening">Screening</a></li>
+      <li><a href="#chatbot">Chatbot</a></li>
+    </ul>
+    <a href="#screening" class="btn-nav">Start Screening</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">AI-Powered Early Detection</p>
+      <h1>Catch What <em>Others Miss.</em></h1>
+      <p class="hero-sub">NeuroDetect uses machine learning to help parents identify early signs of Autism Spectrum Disorder in toddlers — fast, free, and clinician-informed.</p>
+      <div class="hero-btns">
+        <a href="#screening" class="btn-primary">Begin Screening</a>
+        <a href="#about" class="btn-ghost">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="brain-card">
+        <div class="brain-stat"><span>98%</span><p>Model Accuracy</p></div>
+        <div class="brain-stat"><span>10</span><p>Behavioral Indicators</p></div>
+        <div class="brain-stat"><span>Q-CHAT</span><p>Clinician-Approved</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT AUTISM -->
+  <section class="about" id="about">
+    <div class="section-header">
+      <p class="section-tag">Understanding Autism</p>
+      <h2>What is Autism Spectrum Disorder?</h2>
+      <p class="section-sub">ASD is a developmental condition that affects communication, behavior, and social interaction. Early detection — before age 3 — significantly improves outcomes.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">👁️</div>
+        <h3>Social Signs</h3>
+        <ul>
+          <li>Avoids eye contact</li>
+          <li>Doesn't respond to name</li>
+          <li>Prefers to play alone</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Communication Signs</h3>
+        <ul>
+          <li>Delayed speech development</li>
+          <li>Repeats words or phrases</li>
+          <li>Doesn't point to objects</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔁</div>
+        <h3>Behavioral Signs</h3>
+        <ul>
+          <li>Repetitive movements</li>
+          <li>Strong need for routine</li>
+          <li>Unusual reactions to senses</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENING TOOL -->
+  <section class="screening" id="screening">
+    <div class="section-header">
+      <p class="section-tag">Free Screening Tool</p>
+      <h2>Q-CHAT-10 Assessment</h2>
+      <p class="section-sub">Answer 10 simple questions about your child's behavior. Our AI model will analyze the responses instantly.</p>
+    </div>
+
+    <div class="screening-form">
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-text" id="progressText">Step 1 of 4</p>
+
+      <!-- Step 1: Child Info -->
+      <div class="step active" id="step1">
+        <h3>Child's Basic Information</h3>
+        <div class="form-group">
+          <label>Child's Age (in months)</label>
+          <input type="number" id="age" min="12" max="48" placeholder="e.g. 24"/>
+        </div>
+        <div class="form-group">
+          <label>Sex</label>
+          <select id="sex">
+            <option value="">Select</option>
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Has the child had Jaundice at birth?</label>
+          <select id="jaundice">
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Any family member with ASD?</label>
+          <select id="family">
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Who is completing this test?</label>
+          <select id="who">
+            <option value="">Select</option>
+            <option value="0">Parent</option>
+            <option value="1">Family Member</option>
+            <option value="2">Health Care Professional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ethnicity</label>
+          <select id="ethnicity">
+            <option value="">Select</option>
+            <option value="0">Asian</option>
+            <option value="1">Black</option>
+            <option value="2">Hispanic</option>
+            <option value="3">Latino</option>
+            <option value="4">Middle Eastern</option>
+            <option value="5">Mixed</option>
+            <option value="6">Others</option>
+            <option value="7">Pasifika</option>
+            <option value="8">South Asian</option>
+            <option value="9">Turkish</option>
+            <option value="10">White European</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="nextStep(2)">Next →</button>
+      </div>
+
+      <!-- Step 2: Questions 1-5 -->
+      <div class="step" id="step2">
+        <h3>Behavioral Questions (1–5)</h3>
+        <p class="step-note">Answer based on your child's usual behavior. Select <strong>1</strong> if the behavior is present, <strong>0</strong> if not.</p>
+        <div class="question-list" id="questions1to5"></div>
+        <div class="step-btns">
+          <button class="btn-ghost" onclick="prevStep(1)">← Back</button>
+          <button class="btn-primary" onclick="nextStep(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Questions 6-10 -->
+      <div class="step" id="step3">
+        <h3>Behavioral Questions (6–10)</h3>
+        <p class="step-note">Answer based on your child's usual behavior.</p>
+        <div class="question-list" id="questions6to10"></div>
+        <div class="step-btns">
+          <button class="btn-ghost" onclick="prevStep(2)">← Back</button>
+          <button class="btn-primary" onclick="submitScreening()">Submit & Analyze</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Results -->
+      <div class="step" id="step4">
+        <div class="result-box" id="resultBox">
+          <div class="result-icon" id="resultIcon"></div>
+          <h3 id="resultTitle"></h3>
+          <p id="resultText"></p>
+          <div class="result-stats">
+            <div class="result-stat">
+              <span id="confidenceVal"></span>
+              <p>Confidence</p>
+            </div>
+            <div class="result-stat">
+              <span id="riskVal"></span>
+              <p>Risk Level</p>
+            </div>
+          </div>
+          <div class="disclaimer">
+            ⚠️ This screening is not a medical diagnosis. Please consult a qualified healthcare professional for a proper evaluation.
+          </div>
+          <button class="btn-ghost" onclick="resetScreening()">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHATBOT -->
+  <section class="chatbot-section" id="chatbot">
+    <div class="section-header">
+      <p class="section-tag">AI Assistant</p>
+      <h2>Ask Our Autism Advisor</h2>
+      <p class="section-sub">Have questions about autism signs, next steps, or therapies? Our AI chatbot is here to guide you.</p>
+    </div>
+    <div class="chatbot-box">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg bot">
+          <div class="chat-bubble">Hi! I'm NeuroBot. Ask me anything about autism symptoms, early intervention, or what to do after screening. 💙</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="e.g. What are early signs of autism?" onkeydown="if(event.key==='Enter') sendChat()"/>
+        <button onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 NeuroDetect. Built with AI for early childhood care.</p>
+    <p class="footer-note">Not a substitute for professional medical advice.</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
